@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'k8s',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '60.205.177.168',
+        'HOST': 'xxx.xxx.xxx.xxxx',
         'PORT': '3306',
     }
 }
