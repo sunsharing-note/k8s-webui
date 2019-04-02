@@ -1,0 +1,59 @@
+{% load pagetag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pods展示</title>
+</head>
+<body>
+
+<h1>数据展示</h1>
+<table border="1">
+    <thead>
+    <th>id</th>
+    <th>name</th>
+    <th>ip</th>
+    <th>namespace</th>
+    <th>status</th>
+    <th>operation</th>
+    </thead>
+    <tbody>
+    {% for i in cus_list %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{  i.name  }}</td>
+        <td>{{ i.ip }}</td>
+        <td>{{ i.namespace }}</td>
+        <td>{{ i.status }}</td>
+        <td ><a href="/api/pods/delete?name=xxx">删除</a>
+            <a href="/api/pods/logs?name=xxxx">查看日志</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        {% if cus_list.has_previous %}
+            <li>
+                <a href="?page={{ cus_list.previous_page_number }}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+  
+      {%  for pg in cus_list.paginator.page_range %}
+          {% circle_page cus_list.number pg %}
+      {% endfor %}
+  
+      {% if cus_list.has_next %}
+          <li>
+            <a href="?page={{ cus_list.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          {% endif %}
+    </ul>
+  </nav>
+</body>
+</html>

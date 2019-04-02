@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<h1>用户输入</h1>
+<form action="/api/nodes" method="POST">
+    <p>名字<input type="text" name="name"/></p>
+    <p>角色<input type="text" name="role"/></p>
+    <p>版本<input type="text" name="version"/></p>
+    <p><input type="submit" value="提交"/></p>
+</form>
+<h1>数据展示</h1>
+<table border="1">
+    <thead>
+    <th>name</th>
+    <th>role</th>
+    <th>version</th>
+    <th>operation</th>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr>
+        <td>{{  i.name  }}</td>
+        <td>{{ i.role }}</td>
+        <td>{{ i.version }}</td>
+        <td ><a href="/oper?oper_type=delete">删除node</a>
+            <a href="/oper?oper_type=noschule">不可调度</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
